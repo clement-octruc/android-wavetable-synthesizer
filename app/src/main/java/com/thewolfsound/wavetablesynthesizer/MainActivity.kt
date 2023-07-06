@@ -32,7 +32,6 @@ class MainActivity : ComponentActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
     lifecycle.addObserver(synthesizer)
     // pass the synthesizer to the ViewModel
     synthesizerViewModel.wavetableSynthesizer = synthesizer
