@@ -2,6 +2,7 @@
 #include <memory>
 #include "Log.h"
 #include "WavetableSynthesizer.h"
+#include "OboeAudioRecorder.cpp"
 
 extern "C" {
 JNIEXPORT jlong JNICALL
@@ -131,6 +132,8 @@ Java_com_thewolfsound_wavetablesynthesizer_NativeWavetableSynthesizer_setVolume(
   }
 }
 
+
+
 JNIEXPORT void JNICALL
 Java_com_thewolfsound_wavetablesynthesizer_NativeWavetableSynthesizer_setWavetable(
         JNIEnv* env,
@@ -150,4 +153,23 @@ Java_com_thewolfsound_wavetablesynthesizer_NativeWavetableSynthesizer_setWavetab
                 "calling create().");
     }
 }
+JNIEXPORT void JNICALL
+Java_com_thewolfsound_wavetablesynthesizer_NativeWavetableSynthesizer_startRecord(
+    JNIEnv * env,
+    jobject MainActivity,
+    jint recordingFrequency) {
+  const int freq = (int) recordingFrequency;
+
+  static auto a = OboeAudioRecorder::get();
+  a->StartAudioRecorder(freq);
+}
+
+JNIEXPORT void JNICALL
+Java_com_thewolfsound_wavetablesynthesizer_NativeWavetableSynthesizer_stopRecord(
+    JNIEnv* env,
+    jobject obj) {
+  static auto a = OboeAudioRecorder::get();
+  a->StopAudioRecorder();
+}
+
 }

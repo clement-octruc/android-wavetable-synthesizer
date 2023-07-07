@@ -17,6 +17,8 @@ class NativeWavetableSynthesizer : WavetableSynthesizer, DefaultLifecycleObserve
   private external fun setFrequency(synthesizerHandle: Long, frequencyInHz: Float)
   private external fun setVolume(synthesizerHandle: Long, amplitudeInDb: Float)
   private external fun setWavetable(synthesizerHandle: Long, wavetable: Int)
+  external fun startRecord(recordingFrequency: Int)
+  external fun stopRecord()
 
   companion object {
     init {
